@@ -49,6 +49,14 @@ class GameScene: SKScene {
         let bug = SKSpriteNode(imageNamed: "bug_1")
         bug.color = UIColor(named: "BugColor")!
         bug.colorBlendFactor = 1
+        bug.setScale(0)
+        
+        // Animate in
+        let growAction = SKAction.scale(to: 1.2, duration: 0.1)
+        let shrinkAction = SKAction.scale(to: 1, duration: 0.1)
+        let appearAction = SKAction.sequence([growAction, shrinkAction])
+        appearAction.timingMode = .easeInEaseOut
+        bug.run(appearAction)
         
         // Randomize position
         let screenWidth = UIScreen.main.bounds.width
@@ -61,7 +69,7 @@ class GameScene: SKScene {
         let rotation = CGFloat.random(in: 0 ... 2 * .pi)
         bug.zRotation = rotation
         
-        // Animate
+        // Animate textures
         let bugAnimation = SKAction.animate(with: bugTextures, timePerFrame: 1 / 30)
         bug.run(SKAction.repeatForever(bugAnimation))
         
@@ -75,7 +83,11 @@ class GameScene: SKScene {
         let touchLocation = touch.location(in: self)
         
         if let touchedNode = nodes(at: touchLocation).first {
-            touchedNode.removeFromParent()
+            let growAction = SKAction.scale(to: 1.2, duration: 0.1)
+            let shrinkAction = SKAction.scale(to: 0, duration: 0.1)
+            let removeAction = SKAction.removeFromParent()
+            let killAction = SKAction.sequence([growAction, shrinkAction, removeAction])
+            touchedNode.run(killAction)
             
             score += 10
         }
