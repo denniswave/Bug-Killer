@@ -28,6 +28,12 @@ class GameScene: SKScene {
             bugAtlas.textureNamed("bug_2"),
             bugAtlas.textureNamed("bug_3"),
             bugAtlas.textureNamed("bug_4"),
+            bugAtlas.textureNamed("bug_5"),
+            bugAtlas.textureNamed("bug_6"),
+            bugAtlas.textureNamed("bug_7"),
+            bugAtlas.textureNamed("bug_6"),
+            bugAtlas.textureNamed("bug_5"),
+            bugAtlas.textureNamed("bug_4"),
             bugAtlas.textureNamed("bug_3"),
             bugAtlas.textureNamed("bug_2")
         ]
@@ -70,7 +76,7 @@ class GameScene: SKScene {
         bug.zRotation = rotation
         
         // Animate textures
-        let bugAnimation = SKAction.animate(with: bugTextures, timePerFrame: 1 / 30)
+        let bugAnimation = SKAction.animate(with: bugTextures, timePerFrame: 1 / 60)
         bug.run(SKAction.repeatForever(bugAnimation))
         
         // Add Bug to the node tree
