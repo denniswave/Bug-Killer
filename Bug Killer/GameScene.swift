@@ -11,13 +11,29 @@ import GameplayKit
 class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
-        createBug()
+        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            self.createBug()
+        }
     }
     
     @objc func createBug() {
+        // Create Bug Sprite
         let bug = SKSpriteNode(imageNamed: "bug_1")
         bug.color = UIColor(named: "BugColor")!
         bug.colorBlendFactor = 1
+        
+        // Randomize position
+        let screenWidth = UIScreen.main.bounds.width
+        let screenHeight = UIScreen.main.bounds.height
+        let posX = CGFloat.random(in: -screenWidth / 2 ..< screenWidth / 2)
+        let posY = CGFloat.random(in: -screenHeight / 2 ..< screenHeight / 2)
+        bug.position = CGPoint(x: posX, y: posY)
+        
+        // Randomize rotation
+        let rotation = CGFloat.random(in: 0 ... 2 * .pi)
+        bug.zRotation = rotation
+        
+        // Add Bug to the node tree
         addChild(bug)
     }
     
