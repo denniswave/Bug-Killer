@@ -10,13 +10,28 @@ import GameplayKit
 
 class GameScene: SKScene {
     
-    var score = 0 {
+    private var score = 0 {
         didSet {
             scoreLabel.text = "score: \(score)"
         }
     }
     
-    var scoreLabel: SKLabelNode!
+    private var scoreLabel: SKLabelNode!
+    
+    private var bugAtlas: SKTextureAtlas {
+        return SKTextureAtlas(named: "Bug")
+    }
+    
+    private var bugTextures: [SKTexture] {
+        return [
+            bugAtlas.textureNamed("bug_1"),
+            bugAtlas.textureNamed("bug_2"),
+            bugAtlas.textureNamed("bug_3"),
+            bugAtlas.textureNamed("bug_4"),
+            bugAtlas.textureNamed("bug_3"),
+            bugAtlas.textureNamed("bug_2")
+        ]
+    }
     
     override func didMove(to view: SKView) {
         Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
@@ -29,7 +44,7 @@ class GameScene: SKScene {
         addChild(scoreLabel)
     }
     
-    func createBug() {
+    private func createBug() {
         // Create Bug Sprite
         let bug = SKSpriteNode(imageNamed: "bug_1")
         bug.color = UIColor(named: "BugColor")!
@@ -45,6 +60,10 @@ class GameScene: SKScene {
         // Randomize rotation
         let rotation = CGFloat.random(in: 0 ... 2 * .pi)
         bug.zRotation = rotation
+        
+        // Animate
+        let bugAnimation = SKAction.animate(with: bugTextures, timePerFrame: 1 / 30)
+        bug.run(SKAction.repeatForever(bugAnimation))
         
         // Add Bug to the node tree
         addChild(bug)
