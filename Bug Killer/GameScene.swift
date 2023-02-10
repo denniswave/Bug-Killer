@@ -10,13 +10,26 @@ import GameplayKit
 
 class GameScene: SKScene {
     
+    var score = 0 {
+        didSet {
+            scoreLabel.text = "score: \(score)"
+        }
+    }
+    
+    var scoreLabel: SKLabelNode!
+    
     override func didMove(to view: SKView) {
         Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             self.createBug()
         }
+        
+        scoreLabel = SKLabelNode(text: "score: \(score)")
+        scoreLabel.fontName = "Arial Black"
+        scoreLabel.position.y = size.height / 2 - 150
+        addChild(scoreLabel)
     }
     
-    @objc func createBug() {
+    func createBug() {
         // Create Bug Sprite
         let bug = SKSpriteNode(imageNamed: "bug_1")
         bug.color = UIColor(named: "BugColor")!
@@ -44,6 +57,8 @@ class GameScene: SKScene {
         
         if let touchedNode = nodes(at: touchLocation).first {
             touchedNode.removeFromParent()
+            
+            score += 10
         }
     }
     
