@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		95B73188299CE98B0032141B /* BloodSplash.sks in Resources */ = {isa = PBXBuildFile; fileRef = 95B73187299CE98B0032141B /* BloodSplash.sks */; };
 		95E0C75A29966AD60008DA4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E0C75929966AD60008DA4B /* AppDelegate.swift */; };
 		95E0C75C29966AD60008DA4B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 95E0C75B29966AD60008DA4B /* GameScene.sks */; };
 		95E0C76029966AD60008DA4B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E0C75F29966AD60008DA4B /* GameScene.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		95B73187299CE98B0032141B /* BloodSplash.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BloodSplash.sks; sourceTree = "<group>"; };
 		95E0C75629966AD60008DA4B /* Bug Killer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bug Killer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		95E0C75929966AD60008DA4B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95E0C75B29966AD60008DA4B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 			children = (
 				95E0C75929966AD60008DA4B /* AppDelegate.swift */,
 				95E0C75B29966AD60008DA4B /* GameScene.sks */,
+				95B73187299CE98B0032141B /* BloodSplash.sks */,
 				95E0C75F29966AD60008DA4B /* GameScene.swift */,
 				95E0C76129966AD60008DA4B /* GameViewController.swift */,
 				95E0C76329966AD60008DA4B /* Main.storyboard */,
@@ -129,6 +132,7 @@
 				95E0C76529966AD60008DA4B /* Main.storyboard in Resources */,
 				95E0C75C29966AD60008DA4B /* GameScene.sks in Resources */,
 				95E0C76729966AD70008DA4B /* Assets.xcassets in Resources */,
+				95B73188299CE98B0032141B /* BloodSplash.sks in Resources */,
 				95E0C76A29966AD70008DA4B /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

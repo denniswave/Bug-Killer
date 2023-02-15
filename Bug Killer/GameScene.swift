@@ -57,6 +57,7 @@ class GameScene: SKScene {
         bug.color = UIColor(named: "BugColor")!
         bug.colorBlendFactor = 1
         bug.setScale(0)
+        bug.name = "bug"
         
         // Animate in
         let growAction = SKAction.scale(to: 1.2, duration: 0.1)
@@ -84,19 +85,32 @@ class GameScene: SKScene {
         addChild(bug)
     }
     
+    private func killBug(_ bug: SKNode) {
+        let growAction = SKAction.scale(to: 1.2, duration: 0.1)
+        let shrinkAction = SKAction.scale(to: 0, duration: 0.1)
+        let removeAction = SKAction.removeFromParent()
+        let killAction = SKAction.sequence([growAction, shrinkAction, removeAction])
+        bug.run(killAction)
+        
+        let bloodSplash = SKEmitterNode(fileNamed: "BloodSplash")!
+        bloodSplash.position = bug.position
+        addChild(bloodSplash)
+        
+        let waitAction = SKAction.wait(forDuration: killAction.duration)
+        let removeBloodSplashAction = SKAction.sequence([waitAction, removeAction])
+        bloodSplash.run(removeBloodSplashAction)
+        
+        score += 10
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         
         let touchLocation = touch.location(in: self)
         
-        if let touchedNode = nodes(at: touchLocation).first {
-            let growAction = SKAction.scale(to: 1.2, duration: 0.1)
-            let shrinkAction = SKAction.scale(to: 0, duration: 0.1)
-            let removeAction = SKAction.removeFromParent()
-            let killAction = SKAction.sequence([growAction, shrinkAction, removeAction])
-            touchedNode.run(killAction)
-            
-            score += 10
+        if let touchedNode = nodes(at: touchLocation).first,
+           touchedNode.name == "bug" {
+            killBug(touchedNode)
         }
     }
     
