@@ -96,7 +96,7 @@ class GameScene: SKScene {
         bloodSplash.position = bug.position
         addChild(bloodSplash)
         
-        let waitAction = SKAction.wait(forDuration: killAction.duration)
+        let waitAction = SKAction.wait(forDuration: killAction.duration * 5)
         let removeBloodSplashAction = SKAction.sequence([waitAction, removeAction])
         bloodSplash.run(removeBloodSplashAction)
         
