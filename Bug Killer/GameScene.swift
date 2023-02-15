@@ -40,12 +40,13 @@ class GameScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+        Timer.scheduledTimer(withTimeInterval: 0.75, repeats: true) { _ in
             self.createBug()
         }
         
         scoreLabel = SKLabelNode(text: "score: \(score)")
-        scoreLabel.fontName = "Arial Black"
+        scoreLabel.fontName = "Helvetica-Bold"
+        scoreLabel.fontSize = 48
         scoreLabel.position.y = size.height / 2 - 150
         addChild(scoreLabel)
     }
@@ -65,10 +66,10 @@ class GameScene: SKScene {
         bug.run(appearAction)
         
         // Randomize position
-        let screenWidth = UIScreen.main.bounds.width
-        let screenHeight = UIScreen.main.bounds.height
-        let posX = CGFloat.random(in: -screenWidth / 2 ..< screenWidth / 2)
-        let posY = CGFloat.random(in: -screenHeight / 2 ..< screenHeight / 2)
+        let sceneWidth = size.width - 50
+        let sceneHeight = size.height - 50
+        let posX = CGFloat.random(in: -sceneWidth / 2 ..< sceneWidth / 2)
+        let posY = CGFloat.random(in: -sceneHeight / 2 ..< sceneHeight / 2 - 200)
         bug.position = CGPoint(x: posX, y: posY)
         
         // Randomize rotation
